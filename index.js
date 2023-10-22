@@ -6,6 +6,7 @@ for (i =0; i<numOfDrums;i++){
     document.querySelectorAll(".drum")[i].addEventListener("click",function(){
         var buttonInnerHTML = this.innerHTML;
         makeSound(buttonInnerHTML);
+        buttonAnimation(buttonInnerHTML);
     });
 }
 
@@ -14,6 +15,7 @@ for (i =0; i<numOfDrums;i++){
 document.addEventListener("keypress",function(event){
     var keyValue = event.key;
     makeSound(keyValue);
+    buttonAnimation(keyValue);
 })
 
 // Common function for making sound based on key or innerHTML value
@@ -51,4 +53,12 @@ function makeSound(key){
         default:
             console.log(buttonInnerHTML);
     }
+}
+
+function buttonAnimation(currentKey){
+    var activeButton = document.querySelector("."+currentKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function(){
+        activeButton.classList.remove("pressed")
+    },100)
 }
